@@ -9,7 +9,7 @@
     "connect-mongo": "~0.4.0",
     "passport": "latest",
     "passport-local": "latest",
-    "bcrypt": "~0.7.7",
+    "bcrypt": "latest",
     "ejs": "~0.8.4"
   },
   "devDependencies": {
@@ -19,7 +19,6 @@
     "grunt-concurrent": "~0.4.1",
     "grunt-contrib-clean": "~0.5.0",
     "grunt-contrib-coffee": "~0.7.0",
-    "grunt-contrib-compass": "~0.6.0",
     "grunt-contrib-concat": "~0.3.0",
     "grunt-contrib-copy": "~0.4.1",
     "grunt-contrib-cssmin": "~0.7.0",
@@ -53,10 +52,14 @@
     "karma-coffee-preprocessor": "~0.1.2",
     "karma-phantomjs-launcher": "~0.1.1",
     "karma": "~0.10.9",
-    "karma-ng-html2js-preprocessor": "~0.1.0"
+    "karma-ng-html2js-preprocessor": "~0.1.0",
+    "grunt-contrib-stylus": "~0.12.0",
+    "stylus": "~0.42.3",
+    "fluidity": "~0.2.0",
+    "nib": "~1.0.2"
   },
   "engines": {
-    "node": ">=0.8.0"
+    "node": ">=0.10.0"
   },
   "scripts": {
     "test": "grunt test"

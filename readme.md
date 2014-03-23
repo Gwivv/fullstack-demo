@@ -8,7 +8,7 @@ By running `yo angular-fullstack` and checking yes to everything, you get a proj
 
 See original repository here: https://github.com/DaftMonk/fullstack-demo
 
-## Replace Compass by Stylus / Nib
+## Replacing Compass by Stylus / Nib
 
 Stylus is an Expressive, robust, feature-rich CSS preprocessor : http://learnboost.github.io/stylus/.
 
@@ -101,6 +101,22 @@ Tasks performed :
       });
       ```
 
+# Simple way to start it :
+
+ * Install node.js, grunt, bower, yeoman and mongodb then do in project folder :
+
+      ```
+      sudo npm install
+      bower install
+      grunt serve or grunt serve:dist
+      ```
+
+ * [gyp issue][8] In case of issue with bcrypt module, try to do this :
+
+      ```
+      sudo npm install node-expat
+      sudo apt-get remove gyp
+      ```
 
   [1]: https://github.com/DaftMonk/generator-angular-fullstack
   [2]: https://github.com/Gwivv/fullstack-demo/blob/master/package.json
@@ -109,3 +125,4 @@ Tasks performed :
   [5]: https://github.com/Gwivv/fullstack-demo/blob/master/bower.json
   [6]: https://github.com/Gwivv/fullstack-demo/blob/master/app/views/index.html
   [7]: https://github.com/Gwivv/fullstack-demo/blob/master/lib/routes.js
+  [8]: https://github.com/TooTallNate/node-gyp/issues/363

@@ -178,39 +178,10 @@ module.exports = function (grunt) {
               ]
           },
           files: {
-              '.tmp/styles/main.css':['<%= yeoman.app %>/styles/main.styl']
+              'app/styles/main.css':['<%= yeoman.app %>/styles/main.styl']
           }
       }
     },
-
-    // Compiles Sass to CSS and generates necessary files if requested
-    /*compass: {
-      options: {
-        sassDir: '<%= yeoman.app %>/styles',
-        cssDir: '.tmp/styles',
-        generatedImagesDir: '.tmp/images/generated',
-        imagesDir: '<%= yeoman.app %>/images',
-        javascriptsDir: '<%= yeoman.app %>/scripts',
-        fontsDir: '<%= yeoman.app %>/styles/fonts',
-        importPath: '<%= yeoman.app %>/bower_components',
-        httpImagesPath: '/images',
-        httpGeneratedImagesPath: '/images/generated',
-        httpFontsPath: '/styles/fonts',
-        relativeAssets: false,
-        assetCacheBuster: false,
-        raw: 'Sass::Script::Number.precision = 10\n'
-      },
-      dist: {
-        options: {
-          generatedImagesDir: '<%= yeoman.dist %>/public/images/generated'
-        }
-      },
-      server: {
-        options: {
-          debugInfo: true
-        }
-      }
-    },*/
 
     // Renames files for browser caching purposes
     rev: {
@@ -354,13 +325,13 @@ module.exports = function (grunt) {
     // Run some tasks in parallel to speed up the build process
     concurrent: {
       server: [
-        'stylus:server'
+        'stylus'
       ],
       test: [
         'stylus'
       ],
       dist: [
-        'stylus:dist',
+        'stylus',
         'imagemin',
         'svgmin',
         'htmlmin'
