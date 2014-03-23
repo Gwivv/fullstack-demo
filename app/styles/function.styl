@@ -1,0 +1,11 @@
+/**
+* Cross-browser gradient
+*/
+filter()
+  -ms-filter arguments
+  filter  arguments
+
+x-gradient(colorStart,colorEnd)
+  background-color colorEnd
+  background-image linear-gradient(top, colorStart, colorEnd)
+  filter unquote('progid:DXImageTransform.Microsoft.gradient(startColorstr='+colorStart+', endColorstr='+colorEnd+')')

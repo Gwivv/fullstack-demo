@@ -6,6 +6,7 @@
 // 'test/spec/{,*/}*.js'
 // use this if you want to recursively match all subfolders:
 // 'test/spec/**/*.js'
+// [Gwivv] Replace of compass by stylus
 
 module.exports = function (grunt) {
 
@@ -58,9 +59,9 @@ module.exports = function (grunt) {
         files: ['test/spec/{,*/}*.js'],
         tasks: ['newer:jshint:test', 'karma']
       },
-      compass: {
-        files: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
-        tasks: ['compass:server', 'autoprefixer']
+      stylus: {
+        files: ['<%= yeoman.app %>/styles/**/*.styl'],
+        tasks: ['stylus:server', 'autoprefixer']
       },
       gruntfile: {
         files: ['Gruntfile.js']
@@ -70,7 +71,7 @@ module.exports = function (grunt) {
           '<%= yeoman.app %>/views/{,*//*}*.{html,jade}',
           '{.tmp,<%= yeoman.app %>}/styles/{,*//*}*.css',
           '{.tmp,<%= yeoman.app %>}/scripts/{,*//*}*.js',
-          '<%= yeoman.app %>/images/{,*//*}*.{png,jpg,jpeg,gif,webp,svg}',
+          '<%= yeoman.app %>/images/{,*//*}*.{png,jpg,jpeg,gif,webp,svg}'
         ],
       
         options: {
@@ -122,7 +123,7 @@ module.exports = function (grunt) {
             '.tmp',
             '<%= yeoman.dist %>/views/*',
             '<%= yeoman.dist %>/public/*',
-            '!<%= yeoman.dist %>/public/.git*',
+            '!<%= yeoman.dist %>/public/.git*'
           ]
         }]
       },
@@ -162,8 +163,28 @@ module.exports = function (grunt) {
       }
     },
 
+    // Stylus Config
+    stylus: {
+      compile: {
+          options: {
+              paths: ['<%= yeoman.app %>/styles/**/*.styl'],
+              use: [
+                  require('fluidity'), // use stylus plugin at compile time
+                  require('nib')
+              ],
+              import: [
+                  'nib',
+                  '../function'
+              ]
+          },
+          files: {
+              '.tmp/styles/main.css':['<%= yeoman.app %>/styles/main.styl']
+          }
+      }
+    },
+
     // Compiles Sass to CSS and generates necessary files if requested
-    compass: {
+    /*compass: {
       options: {
         sassDir: '<%= yeoman.app %>/styles',
         cssDir: '.tmp/styles',
@@ -189,7 +210,7 @@ module.exports = function (grunt) {
           debugInfo: true
         }
       }
-    },
+    },*/
 
     // Renames files for browser caching purposes
     rev: {
@@ -333,13 +354,13 @@ module.exports = function (grunt) {
     // Run some tasks in parallel to speed up the build process
     concurrent: {
       server: [
-        'compass:server'
+        'stylus:server'
       ],
       test: [
-        'compass'
+        'stylus'
       ],
       dist: [
-        'compass:dist',
+        'stylus:dist',
         'imagemin',
         'svgmin',
         'htmlmin'

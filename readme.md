@@ -4,48 +4,63 @@
 
 By running `yo angular-fullstack` and checking yes to everything, you get a project very similar to this. This repo is to give you an idea of what that project looks like.
 
-## Live Demo
-
-http://fullstack-demo.herokuapp.com/. 
-
-> Note: Demo is running on Heroku free instance, so you will likely have to refresh for it to load.
-
 ## Getting Started
 
-Here's an overview of the application structure:
+See original repository here: https://github.com/DaftMonk/fullstack-demo
 
- * [Server Application][3] High level logic for bootstrapping the server.
- * [NodeJS Routes][6] Where we set up our REST api routes
- * [Server Controllers][5] Where we take care of backend logic
- * [Server Models][4] Where we setup our object schema and validation.
- * [NodeJS Middleware][7] Where we put additional logic that a route must pass through before going to the next route.
- * [Angular Routes][8] Where we set up routes to our application views
- * [Angular Views][9] Where we set up our application views
- * [Angular Controllers][11] Where we keep our frontend logic
- * [Angular Services][10] Where we connect to our REST api
- * [Angular Tests][12] Where we write our angular tests
+## Replace Compass/Less by Stylus/Nib Install
 
-## What about Coffeescript and Jade?
+Tasks performed :
 
-An equivalent of this project can be generated with Coffeescript and Jade Templates by using `yo angular-fullstack --coffee --jade`
+ * [package.json][2] Remove unused dependencies and add Stylus dependencies needed.
 
-## Quick Install
+      --"grunt-contrib-compass": "~0.6.0",--
+      "grunt-contrib-stylus": "~0.12.0",
+      "stylus": "~0.42.2",
+      "nib": "~1.0.2",
+      "fluidity": "~0.2.0"
 
-Easily create your own project as specified here: https://github.com/DaftMonk/generator-angular-fullstack#usage
+ * [Gruntfile.js][3] Remove Compass tasks and replace by Stylus tasks.
 
-Then launch your express server in development mode using
+      ```
+      ... [Watch task]
+      stylus: {
+        files: ['<%= yeoman.app %>/styles/**/*.styl'],
+        tasks: ['stylus:server', 'autoprefixer']
+      },
+      ...
+      ```
 
-    $ grunt serve
+      ```
+      ... [Stylus task]
+      stylus: {
+        compile: {
+            options: {
+                paths: ['<%= yeoman.app %>/styles/**/*.styl'],
+                use: [
+                    require('fluidity'), // use stylus plugin at compile time
+                    require('nib')
+                ],
+                import: [
+                    'nib',
+                    '../function'
+                ]
+            },
+            files: {
+                '.tmp/styles/main.css':['<%= yeoman.app %>/styles/main.styl']
+            }
+        }
+      },
+      ...
+      ```
+
+
+ * [main.styl][4] Rename of main.scss in main.styl and refactor code.
+ * [bower.json][5] Add bootstrap-css-only component instead of compass import bootstrap.
 
 
   [1]: https://github.com/DaftMonk/generator-angular-fullstack
-  [3]: https://github.com/DaftMonk/fullstack-demo/blob/master/server.js
-  [4]: https://github.com/DaftMonk/fullstack-demo/blob/master/lib/models/thing.js
-  [5]: https://github.com/DaftMonk/fullstack-demo/blob/master/lib/controllers/api.js
-  [6]: https://github.com/DaftMonk/fullstack-demo/blob/master/lib/routes.js
-  [7]: https://github.com/DaftMonk/fullstack-demo/blob/master/lib/middleware.js
-  [8]: https://github.com/DaftMonk/fullstack-demo/blob/master/app/scripts/app.js
-  [9]: https://github.com/DaftMonk/fullstack-demo/tree/master/app/views/partials
-  [10]: https://github.com/DaftMonk/fullstack-demo/blob/master/app/scripts/services/session.js
-  [11]: https://github.com/DaftMonk/fullstack-demo/blob/master/app/scripts/controllers/login.js
-  [12]: https://github.com/DaftMonk/fullstack-demo/blob/master/test/spec/controllers/main.js
+  [2]: https://github.com/Gwivv/fullstack-demo/blob/master/package.json
+  [3]: https://github.com/Gwivv/fullstack-demo/blob/master/Gruntfile.js
+  [4]: https://github.com/Gwivv/fullstack-demo/blob/master/app/styles/main.styl
+  [5]: https://github.com/Gwivv/fullstack-demo/blob/master/bower.json
