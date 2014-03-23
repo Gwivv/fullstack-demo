@@ -114,8 +114,8 @@ Tasks performed :
  * [gyp issue][8] In case of issue with bcrypt module, try to do this :
 
       ```
-      sudo npm install node-expat
       sudo apt-get remove gyp
+      sudo npm install node-expat
       ```
 
   [1]: https://github.com/DaftMonk/generator-angular-fullstack
