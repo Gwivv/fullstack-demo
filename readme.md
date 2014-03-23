@@ -10,15 +10,21 @@ See original repository here: https://github.com/DaftMonk/fullstack-demo
 
 ## Replace Compass/Less by Stylus/Nib Install
 
+Stylus is an Expressive, robust, feature-rich CSS preprocessor : http://learnboost.github.io/stylus/.
+
+And Nib provide vendor support and other awesome function : http://visionmedia.github.io/nib/.
+
 Tasks performed :
 
  * [package.json][2] Remove unused dependencies and add Stylus dependencies needed.
 
+      ```
       --"grunt-contrib-compass": "~0.6.0",--
       "grunt-contrib-stylus": "~0.12.0",
       "stylus": "~0.42.2",
       "nib": "~1.0.2",
       "fluidity": "~0.2.0"
+      ```
 
  * [Gruntfile.js][3] Remove Compass tasks and replace by Stylus tasks.
 
@@ -54,9 +60,38 @@ Tasks performed :
       ...
       ```
 
-
  * [main.styl][4] Rename of main.scss in main.styl and refactor code.
+
  * [bower.json][5] Add bootstrap-css-only component instead of compass import bootstrap.
+
+      ```
+      --"sass-bootstrap": "~3.0.2",--
+      "bootstrap-css-only": "~3.0.0",
+      ```
+
+ * [index.html][6] Replace import css of sass-bootstrap by bootstrap-css-only.
+
+      ```
+      --<link rel="stylesheet" href="bower_components/sass-bootstrap/dist/css/bootstrap.css" />--
+      <link rel="stylesheet" href="bower_components/bootstrap-css-only/css/bootstrap.css" />
+      ```
+
+# Performed also some change :
+
+ * To use to awesome 404 page provide by google even with your local node.js server, replace all ```res.send(404)``` line like this :
+
+      ```
+      --res.send(404);--
+      res.render("404.html");
+      ```
+
+ * [routes.js][7] Add route for undefined api path requested :
+
+      ```
+      app.get('/api/*', function(req, res) {
+          res.render("404.html");
+      });
+      ```
 
 
   [1]: https://github.com/DaftMonk/generator-angular-fullstack
@@ -64,3 +99,5 @@ Tasks performed :
   [3]: https://github.com/Gwivv/fullstack-demo/blob/master/Gruntfile.js
   [4]: https://github.com/Gwivv/fullstack-demo/blob/master/app/styles/main.styl
   [5]: https://github.com/Gwivv/fullstack-demo/blob/master/bower.json
+  [6]: https://github.com/Gwivv/fullstack-demo/blob/master/app/views/index.html
+  [7]: https://github.com/Gwivv/fullstack-demo/blob/master/lib/routes.js
