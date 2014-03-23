@@ -62,6 +62,14 @@ Tasks performed :
 
  * [main.styl][4] Rename of main.scss in main.styl and refactor code.
 
+      ```
+      /* define color variable */
+      $border-color=#e5e5e5
+      /* and use it like this */
+      .header
+        border-bottom 1px solid $border-color
+      ```
+
  * [bower.json][5] Add bootstrap-css-only component instead of compass import bootstrap.
 
       ```
@@ -76,9 +84,9 @@ Tasks performed :
       <link rel="stylesheet" href="bower_components/bootstrap-css-only/css/bootstrap.css" />
       ```
 
-# Performed also some change :
+# Performed also changes :
 
- * To use to awesome 404 page provide by google even with your local node.js server, replace all ```res.send(404)``` line like this :
+ * To use the awesome 404 page provide by google even with your local node.js server, replace all ```res.send(404)``` line like this :
 
       ```
       // res.send(404);
