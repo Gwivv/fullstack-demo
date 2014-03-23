@@ -8,7 +8,7 @@ By running `yo angular-fullstack` and checking yes to everything, you get a proj
 
 See original repository here: https://github.com/DaftMonk/fullstack-demo
 
-## Replace Compass/Less by Stylus/Nib Install
+## Replace Compass by Stylus / Nib
 
 Stylus is an Expressive, robust, feature-rich CSS preprocessor : http://learnboost.github.io/stylus/.
 
