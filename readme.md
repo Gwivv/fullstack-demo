@@ -12,14 +12,14 @@ See original repository here: https://github.com/DaftMonk/fullstack-demo
 
 Stylus is an Expressive, robust, feature-rich CSS preprocessor : http://learnboost.github.io/stylus/.
 
-And Nib provide vendor support and other awesome function : http://visionmedia.github.io/nib/.
+And Nib provide vendor support and others awesome functions : http://visionmedia.github.io/nib/.
 
 Tasks performed :
 
  * [package.json][2] Remove unused dependencies and add Stylus dependencies needed.
 
       ```
-      --"grunt-contrib-compass": "~0.6.0",--
+      // "grunt-contrib-compass": "~0.6.0",
       "grunt-contrib-stylus": "~0.12.0",
       "stylus": "~0.42.2",
       "nib": "~1.0.2",
@@ -65,14 +65,14 @@ Tasks performed :
  * [bower.json][5] Add bootstrap-css-only component instead of compass import bootstrap.
 
       ```
-      --"sass-bootstrap": "~3.0.2",--
+      // "sass-bootstrap": "~3.0.2",
       "bootstrap-css-only": "~3.0.0",
       ```
 
  * [index.html][6] Replace import css of sass-bootstrap by bootstrap-css-only.
 
       ```
-      --<link rel="stylesheet" href="bower_components/sass-bootstrap/dist/css/bootstrap.css" />--
+      <!--link rel="stylesheet" href="bower_components/sass-bootstrap/dist/css/bootstrap.css" /-->
       <link rel="stylesheet" href="bower_components/bootstrap-css-only/css/bootstrap.css" />
       ```
 
@@ -81,7 +81,7 @@ Tasks performed :
  * To use to awesome 404 page provide by google even with your local node.js server, replace all ```res.send(404)``` line like this :
 
       ```
-      --res.send(404);--
+      // res.send(404);
       res.render("404.html");
       ```
 
