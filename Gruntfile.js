@@ -61,7 +61,7 @@ module.exports = function (grunt) {
       },
       stylus: {
         files: ['<%= yeoman.app %>/styles/**/*.styl'],
-        tasks: ['stylus', 'autoprefixer']
+        tasks: ['newer:stylus', 'newer:copy:styles:server', 'autoprefixer']
       },
       gruntfile: {
         files: ['Gruntfile.js']
@@ -178,7 +178,7 @@ module.exports = function (grunt) {
               ]
           },
           files: {
-              'app/styles/main.css':['<%= yeoman.app %>/styles/main.styl']
+              '.tmp/styles/main.css':['<%= yeoman.app %>/styles/main.styl']
           }
       }
     },
@@ -315,23 +315,34 @@ module.exports = function (grunt) {
         }]
       },
       styles: {
-        expand: true,
-        cwd: '<%= yeoman.app %>/styles',
-        dest: '.tmp/styles/',
-        src: '{,*/}*.css'
+          server: {
+              expand: true,
+              cwd: '.tmp/styles/',
+              dest: '<%= yeoman.app %>/styles',
+              src: '{,*/}*.css'
+          },
+          dist: {
+              expand: true,
+              cwd: '.tmp/styles/',
+              dest: '<%= yeoman.app %>/public/styles',
+              src: '{,*/}*.css'
+          }
       }
     },
 
     // Run some tasks in parallel to speed up the build process
     concurrent: {
       server: [
-        'stylus'
+        'stylus',
+        'copy:styles:server'
       ],
       test: [
-        'stylus'
+        'stylus',
+        'copy:styles:server'
       ],
       dist: [
-        'stylus',
+        'stylus',,
+        'copy:styles:dist',
         'imagemin',
         'svgmin',
         'htmlmin'
