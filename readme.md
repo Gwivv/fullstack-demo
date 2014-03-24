@@ -47,7 +47,7 @@ Tasks performed :
                     require('fluidity'), // use stylus plugin at compile time
                     require('nib')
                 ],
-                import: [
+                import: [ // imported in each stylus file
                     'nib',
                     '../function'
                 ]
@@ -57,6 +57,25 @@ Tasks performed :
             }
         }
       },
+      ...
+      ```
+      
+      ```
+      ... [Copy task]
+      styles: {
+          server: {
+              expand: true,
+              cwd: '.tmp/styles/',
+              dest: '<%= yeoman.app %>/styles',
+              src: '{,*/}*.css'
+          },
+          dist: {
+              expand: true,
+              cwd: '.tmp/styles/',
+              dest: '<%= yeoman.app %>/public/styles',
+              src: '{,*/}*.css'
+          }
+      }
       ...
       ```
 
