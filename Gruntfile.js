@@ -61,7 +61,7 @@ module.exports = function (grunt) {
       },
       stylus: {
         files: ['<%= yeoman.app %>/styles/**/*.styl'],
-        tasks: ['stylus:server', 'autoprefixer']
+        tasks: ['stylus', 'autoprefixer']
       },
       gruntfile: {
         files: ['Gruntfile.js']
