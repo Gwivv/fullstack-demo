@@ -32,7 +32,7 @@ Tasks performed :
       ... [Watch task]
       stylus: {
         files: ['<%= yeoman.app %>/styles/**/*.styl'],
-        tasks: ['stylus:server', 'autoprefixer']
+        tasks: ['newer:stylus', 'newer:copy:styles:server', 'autoprefixer']
       },
       ...
       ```
