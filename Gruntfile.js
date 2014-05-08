@@ -61,7 +61,7 @@ module.exports = function (grunt) {
       },
       stylus: {
         files: ['<%= yeoman.app %>/styles/**/*.styl'],
-        tasks: ['newer:stylus', 'newer:copy:styles:server', 'autoprefixer']
+        tasks: ['stylus','copy:styles:server']
       },
       gruntfile: {
         files: ['Gruntfile.js']
@@ -138,21 +138,6 @@ module.exports = function (grunt) {
         }]
       },
       server: '.tmp'
-    },
-
-    // Add vendor prefixed styles
-    autoprefixer: {
-      options: {
-        browsers: ['last 1 version']
-      },
-      dist: {
-        files: [{
-          expand: true,
-          cwd: '.tmp/styles/',
-          src: '{,*/}*.css',
-          dest: '.tmp/styles/'
-        }]
-      }
     },
 
     // Automatically inject Bower components into the app
@@ -316,34 +301,23 @@ module.exports = function (grunt) {
         }]
       },
       styles: {
-          server: {
-              expand: true,
-              cwd: '.tmp/styles/',
-              dest: '<%= yeoman.app %>/styles',
-              src: '{,*/}*.css'
-          },
-          dist: {
-              expand: true,
-              cwd: '.tmp/styles/',
-              dest: '<%= yeoman.app %>/public/styles',
-              src: '{,*/}*.css'
-          }
+          expand: true,
+          cwd: '.tmp/styles/',
+          dest: '<%= yeoman.app %>/styles',
+          src: '{,*/}*.css'
       }
     },
 
     // Run some tasks in parallel to speed up the build process
     concurrent: {
       server: [
-        'stylus',
-        'copy:styles:server'
+        'stylus'
       ],
       test: [
-        'stylus',
-        'copy:styles:server'
+        'stylus'
       ],
       dist: [
-        'stylus',,
-        'copy:styles:dist',
+        'stylus',
         'imagemin',
         'svgmin',
         'htmlmin'
@@ -398,6 +372,7 @@ module.exports = function (grunt) {
       'clean:server',
       'bower-install',
       'concurrent:server',
+      'copy:styles',
       'autoprefixer',
       'express:dev',
       'open',
@@ -413,6 +388,7 @@ module.exports = function (grunt) {
   grunt.registerTask('test', [
     'clean:server',
     'concurrent:test',
+    'copy:styles',
     'autoprefixer',
     'karma'
   ]);
@@ -422,7 +398,7 @@ module.exports = function (grunt) {
     'bower-install',
     'useminPrepare',
     'concurrent:dist',
-    'autoprefixer',
+    'copy:styles',
     'concat',
     'ngmin',
     'copy:dist',
