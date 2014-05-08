@@ -18,8 +18,8 @@ Tasks performed :
 
  * [package.json][2] Remove unused dependencies and add Stylus dependencies needed.
 
-      ```
-      // "grunt-contrib-compass": "~0.6.0",
+      ``` json
+      --"grunt-contrib-compass": "~0.6.0",--
       "grunt-contrib-stylus": "~0.12.0",
       "stylus": "~0.42.2",
       "nib": "~1.0.2",
@@ -32,7 +32,7 @@ Tasks performed :
       ... [Watch task]
       stylus: {
         files: ['<%= yeoman.app %>/styles/**/*.styl'],
-        tasks: ['newer:stylus', 'newer:copy:styles:server', 'autoprefixer']
+        tasks: ['stylus','copy:styles:server']
       },
       ...
       ```
@@ -63,18 +63,10 @@ Tasks performed :
       ```
       ... [Copy task]
       styles: {
-          server: {
-              expand: true,
-              cwd: '.tmp/styles/',
-              dest: '<%= yeoman.app %>/styles',
-              src: '{,*/}*.css'
-          },
-          dist: {
-              expand: true,
-              cwd: '.tmp/styles/',
-              dest: '<%= yeoman.app %>/public/styles',
-              src: '{,*/}*.css'
-          }
+        expand: true,
+        cwd: '.tmp/styles/',
+        dest: '<%= yeoman.app %>/styles',
+        src: '{,*/}*.css'
       }
       ...
       ```
@@ -92,7 +84,7 @@ Tasks performed :
  * [bower.json][5] Add bootstrap-css-only component instead of compass import bootstrap.
 
       ```
-      // "sass-bootstrap": "~3.0.2",
+      --"sass-bootstrap": "~3.0.2",--
       "bootstrap-css-only": "~3.0.0",
       ```
 
@@ -103,6 +95,11 @@ Tasks performed :
       <link rel="stylesheet" href="bower_components/bootstrap-css-only/css/bootstrap.css" />
       ```
 
+**Note :** To use fonts from boostrap, copy all files in bootstrap-css-only/fonts/ to a folder fonts and add this line to the general copy task :
+
+      ```
+      'fonts/**/*',
+      ```
 # Performed also changes :
 
  * To use the awesome 404 page provide by google even with your local node.js server, replace all ```res.send(404)``` line like this :
